@@ -18,60 +18,15 @@ return {
       })
     end
   },
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      "L3MON4D3/LuaSnip",
-      'hrsh7th/cmp-nvim-lsp',
-      'kristijanhusak/vim-dadbod-completion',
-    },
-    config = function()
-      local cmp = require('cmp')
-      cmp.setup {
-        formatting = {
-          format = function(entry, vim_item)
-            local source = entry.source.name
-            local source_name = ({
-              nvim_lsp = 'LSP',
-              buffer = 'Buffer',
-            })[source] or source
-
-            vim_item.menu = '[' .. source_name .. ']'
-
-            return vim_item
-          end,
-        },
-        mapping = cmp.mapping.preset.insert {
-          -- ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-b>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.abort(),
-          ['<C-k>'] = cmp.mapping.select_prev_item(),
-          ['<C-j>'] = cmp.mapping.select_next_item(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        },
-        snippet = {
-          expand = function(args)
-            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-          end,
-        },
-        sources = cmp.config.sources {
-          { name = 'nvim_lsp' },
-          { name = 'buffer' },
-          { name = "vim-dadbod-completion", max_item_count = 10 },
-        },
-      }
-    end
-  },
+  
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
       'nvim-lua/lsp-status.nvim',
     },
     config = function()
       local lsp_status = require('lsp-status')
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
       capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
 
       local lspconfig = require('lspconfig')
