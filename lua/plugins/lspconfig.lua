@@ -23,6 +23,7 @@ return {
       "L3MON4D3/LuaSnip",
       'hrsh7th/cmp-nvim-lsp',
       'kristijanhusak/vim-dadbod-completion',
+      'zbirenbaum/copilot-cmp',
     },
     config = function()
       local cmp = require('cmp')
@@ -55,6 +56,10 @@ return {
           end,
         },
         sources = cmp.config.sources {
+          -- Copilot Source --
+          { name = 'copilot', group_index = 2},
+
+          -- Other Sources --
           { name = 'nvim_lsp' },
           { name = 'buffer' },
           { name = "vim-dadbod-completion", max_item_count = 10 },
@@ -84,6 +89,13 @@ return {
     opts = function(_, opts)
       if type(opts.sources) == "table" then
         vim.list_extend(opts.sources, { name = "clojure" })
+
+        print("Esse opts é de dentro do copilot.lua")
+        vim.list_extend(opts.sources, {
+          name = "copilot",
+          group_index = 1,
+          priority = 100,
+        })
       end
     end,
     main = "lazyvim.util.cmp",
