@@ -40,3 +40,26 @@ vim.keymap.set("n", "<leader>ft", function() Snacks.terminal(nil, { cwd = LazyVi
 
 
 -- <leader>rn Muda em todo lugar onde tem essa funçao
+
+-- FOR COPILOT --
+vim.g.copilot_no_tab_map = true
+vim.keymap.set("i", "<C-j>", 'copilot@Accept(<CR>)', { desc = "Accept the copilot suggestion" })
+
+
+-- Criar uma nova tab
+vim.keymap.set("n", "<leader>tN", "<cmd>tabnew<CR>", { desc = "Nova Tab" })
+
+-- Fechar a tab atual
+vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", { desc = "Fechar Tab" })
+
+-- Alternar entre tabs
+vim.keymap.set("n", "<leader>tn", ":tabnext<CR>", { desc = "Próxima Tab" })
+vim.keymap.set("n", "<leader>tp", ":tabprevious<CR>", { desc = "Tab Anterior" })
+
+-- Mover tab
+vim.keymap.set("n", "<leader>tmr", ":tabmove +1<CR>", { desc = "Mover Tab Direita" })
+vim.keymap.set("n", "<leader>tml", ":tabmove -1<CR>", { desc = "Mover Tab Esquerda" })
+
+
+-- KEYMAP para meu comando Repl Nubank
+vim.keymap.set("n", "<leader>rn", ":NuRepl<CR>", { desc = "Executa Lein Especifico para Nubank" })

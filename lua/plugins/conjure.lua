@@ -53,7 +53,7 @@ return {
             -- alternatives with <localleader>K and <localleader>gd
             vim.g["conjure#mapping#doc_word"] = "K"
             vim.g["conjure#mapping#def_word"] = "gd"
-            vim.cmd("let g:conjure#client#clojure#nrepl#test#current_form_names = ['deftest', 'defflow', 'defflow-new-system!']")
+            vim.cmd("let g:conjure#client#clojure#nrepl#test#current_form_names = ['deftest', 'defflow', 'defspec', 'defflow-new-system!']")
           end,
     }
 }

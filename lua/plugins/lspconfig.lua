@@ -56,8 +56,8 @@ return {
           end,
         },
         sources = cmp.config.sources {
-          -- Copilot Source --
-          { name = 'copilot', group_index = 2},
+          -- -- Copilot Source --
+          -- { name = 'copilot', group_index = 2},
 
           -- Other Sources --
           { name = 'nvim_lsp' },
@@ -72,6 +72,11 @@ return {
     version = false, -- last release is way too old
     event = "InsertEnter",
     dependencies = {
+      "L3MON4D3/LuaSnip",
+      'hrsh7th/cmp-nvim-lsp',
+      'kristijanhusak/vim-dadbod-completion',
+      'zbirenbaum/copilot-cmp',
+      
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -89,13 +94,16 @@ return {
     opts = function(_, opts)
       if type(opts.sources) == "table" then
         vim.list_extend(opts.sources, { name = "clojure" })
-
-        print("Esse opts é de dentro do copilot.lua")
-        vim.list_extend(opts.sources, {
+        table.insert(opts.sources, 1, {
           name = "copilot",
           group_index = 1,
           priority = 100,
         })
+        -- vim.list_extend(opts.sources, {
+        --   name = "copilot",
+        --   group_index = 1,
+        --   priority = 100,
+        -- })
       end
     end,
     main = "lazyvim.util.cmp",
@@ -112,5 +120,44 @@ return {
       --   { "gy", "<cmd>FzfLua lsp_typedefs        jump1=true ignore_current_line=true<cr>", desc = "Goto T[y]pe Definition" },
       -- })
     end,
+    setup = {
+      eslint = function()
+        if not auto_format then
+          return
+        end
+  
+        local function get_client(buf)
+          return LazyVim.lsp.get_clients({ name = "eslint", bufnr = buf })[1]
+        end
+  
+        local formatter = LazyVim.lsp.formatter({
+          name = "eslint: lsp",
+          primary = false,
+          priority = 200,
+          filter = "eslint",
+        })
+  
+        -- Use EslintFixAll on Neovim < 0.10.0
+        if not pcall(require, "vim.lsp._dynamic") then
+          formatter.name = "eslint: EslintFixAll"
+          formatter.sources = function(buf)
+            local client = get_client(buf)
+            return client and { "eslint" } or {}
+          end
+          formatter.format = function(buf)
+            local client = get_client(buf)
+            if client then
+              local diag = vim.diagnostic.get(buf, { namespace = vim.lsp.diagnostic.get_namespace(client.id) })
+              if #diag > 0 then
+                vim.cmd("EslintFixAll")
+              end
+            end
+          end
+        end
+  
+        -- register the formatter with LazyVim
+        LazyVim.format.register(formatter)
+      end,
+    },
   }
 }
