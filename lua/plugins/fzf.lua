@@ -24,6 +24,7 @@ return {
         border = 'none',
         preview = {
           title_pos = 'left',
+          hidden = true,
         },
       },
     })

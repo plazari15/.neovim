@@ -10,7 +10,7 @@ vim.g.mapleader = " "
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
 -- explorer files
-vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>")
+-- vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>")
 
 -- Split window
 vim.keymap.set("n", "ss", "<cmd>split<CR>")
@@ -38,13 +38,7 @@ vim.keymap.set("n", "<C-f>", "<FzfLua live_grep>", { desc = "PRIORIDADE" })
 vim.keymap.set("n", "tt", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
 vim.keymap.set("n", "<leader>ft", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
 
-
--- <leader>rn Muda em todo lugar onde tem essa funçao
-
--- FOR COPILOT --
-vim.g.copilot_no_tab_map = true
-vim.keymap.set("i", "<C-j>", 'copilot@Accept(<CR>)', { desc = "Accept the copilot suggestion" })
-
+-- TABS --
 
 -- Criar uma nova tab
 vim.keymap.set("n", "<leader>tN", "<cmd>tabnew<CR>", { desc = "Nova Tab" })
@@ -60,6 +54,15 @@ vim.keymap.set("n", "<leader>tp", ":tabprevious<CR>", { desc = "Tab Anterior" })
 vim.keymap.set("n", "<leader>tmr", ":tabmove +1<CR>", { desc = "Mover Tab Direita" })
 vim.keymap.set("n", "<leader>tml", ":tabmove -1<CR>", { desc = "Mover Tab Esquerda" })
 
+-- Alternar entre tabs rapidamente
+vim.keymap.set("n", "<Tab>", ":tabnext<CR>", { desc = "Próxima aba" })
+vim.keymap.set("n", "<S-Tab>", ":tabprevious<CR>", { desc = "Aba anterior" })
+
+-- Ir para a primeira e última aba
+vim.keymap.set("n", "<leader>tf", ":tabfirst<CR>", { desc = "Primeira aba" })
+vim.keymap.set("n", "<leader>tl", ":tablast<CR>", { desc = "Última aba" })
+
+-- FIM TABS --
 
 -- KEYMAP para meu comando Repl Nubank
 vim.keymap.set("n", "<leader>rn", ":NuRepl<CR>", { desc = "Executa Lein Especifico para Nubank" })

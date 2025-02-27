@@ -2,7 +2,8 @@
   "extras": [
     "lazyvim.plugins.extras.ai.copilot",
     "lazyvim.plugins.extras.coding.nvim-cmp",
-    "lazyvim.plugins.extras.lang.clojure"
+    "lazyvim.plugins.extras.lang.clojure",
+    "lazyvim.plugins.extras.lang.go"
   ],
   "install_version": 8,
   "news": {

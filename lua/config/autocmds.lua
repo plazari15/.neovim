@@ -7,7 +7,11 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
+-- COMANDO QUE ABRE O REPL ESPECIFICO DO NUBANK
+
 vim.api.nvim_create_user_command("NuRepl", function()
     vim.cmd("Lein with-profile +unit,+integration,+dev repl")
   end, {})
+
+-- FIM COMANDO QUE ABRE O REPL ESPECIFICO DO NUBANK
   
