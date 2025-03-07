@@ -65,4 +65,6 @@ vim.keymap.set("n", "<leader>tl", ":tablast<CR>", { desc = "Última aba" })
 -- FIM TABS --
 
 -- KEYMAP para meu comando Repl Nubank
-vim.keymap.set("n", "<leader>rn", ":NuRepl<CR>", { desc = "Executa Lein Especifico para Nubank" })
+vim.keymap.set("n", "<leader>rr", ":NuRepl<CR>", { desc = "Executa Lein Especifico para Nubank" })
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {desc = "Renomeia usando o LSP"})
+vim.keymap.set('n', '<leader>fk', ':%s//g<Left><Left>', { noremap = true, silent = false })
