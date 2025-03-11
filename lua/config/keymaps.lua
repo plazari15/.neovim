@@ -68,3 +68,9 @@ vim.keymap.set("n", "<leader>tl", ":tablast<CR>", { desc = "Última aba" })
 vim.keymap.set("n", "<leader>rr", ":NuRepl<CR>", { desc = "Executa Lein Especifico para Nubank" })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {desc = "Renomeia usando o LSP"})
 vim.keymap.set('n', '<leader>fk', ':%s//g<Left><Left>', { noremap = true, silent = false })
+
+
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { noremap = true, desc = "Abre o modal com o erro" })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { noremap = true, desc = "Go to prev error" })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next,  { noremap = true, desc = "Go to next error" })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,  { noremap = true, desc = "" })
