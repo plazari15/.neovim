@@ -1,11 +1,5 @@
 {
-  "extras": [
-    "lazyvim.plugins.extras.ai.copilot",
-    "lazyvim.plugins.extras.coding.nvim-cmp",
-    "lazyvim.plugins.extras.lang.clojure",
-    "lazyvim.plugins.extras.lang.go",
-    "lazyvim.plugins.extras.lang.markdown"
-  ],
+  "extras": [],
   "install_version": 8,
   "news": {
     "NEWS.md": "10960"
