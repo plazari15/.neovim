@@ -9,6 +9,7 @@ return {
     "sources.default",
   },
   dependencies = {
+    'Kaiser-Yang/blink-cmp-avante',
     "rafamadriz/friendly-snippets",
     -- add blink.compat to dependencies
     {
@@ -65,7 +66,14 @@ return {
       -- adding any nvim-cmp sources here will enable them
       -- with blink.compat
       compat = {},
-      default = { "lsp", "path", "snippets", "buffer" },
+      default = { 'lsp', 'buffer', 'snippets','avante', 'path' },
+      providers = {
+        avante = {
+            module = 'blink-cmp-avante',
+            name = 'Avante',
+            opts = {},
+        }
+      },
     },
 
     cmdline = {
