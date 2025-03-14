@@ -9,6 +9,9 @@ return {
         -- for example
         provider = "copilot",
         auto_suggestions_provider = "copilot",
+        copilot = {
+            model = "gpt-4o-2024-08-06",
+        },
       },
       -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
       build = "make",
