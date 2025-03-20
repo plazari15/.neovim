@@ -10,15 +10,15 @@
 -- COMANDO QUE ABRE O REPL ESPECIFICO DO NUBANK
 
 vim.api.nvim_create_user_command("NuRepl", function()
-    vim.cmd("Lein with-profile +unit,+integration,+dev repl")
-  end, {})
+  vim.cmd("Lein with-profile +unit,+integration,+dev repl")
+end, {})
 
 -- FIM COMANDO QUE ABRE O REPL ESPECIFICO DO NUBANK
-  
+
 -- COMANDO QUE VAI ORGANIZAR OS IMPORTS --
 vim.api.nvim_create_user_command("CleanNs", function()
   vim.lsp.buf.code_action({
     context = { only = { "source.organizeImports" } },
-    apply = true
+    apply = true,
   })
 end, {})
