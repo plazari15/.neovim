@@ -1,7 +1,8 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.ai.copilot",
-    "lazyvim.plugins.extras.lang.clojure"
+    "lazyvim.plugins.extras.editor.mini-diff",
+    "lazyvim.plugins.extras.lang.clojure",
+    "lazyvim.plugins.extras.lang.markdown"
   ],
   "install_version": 8,
   "news": {

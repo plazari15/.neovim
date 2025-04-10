@@ -74,3 +74,8 @@ vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { noremap = true, de
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { noremap = true, desc = "Go to prev error" })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next,  { noremap = true, desc = "Go to next error" })
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,  { noremap = true, desc = "" })
+
+
+-- LocalLedder for CodeCompanion
+vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>ab', ':CodeCompanion #buffer ', { noremap = true, silent = false })       

@@ -9,7 +9,7 @@ return {
     "sources.default",
   },
   dependencies = {
-    'Kaiser-Yang/blink-cmp-avante',
+    --'Kaiser-Yang/blink-cmp-avante',
     "rafamadriz/friendly-snippets",
     -- add blink.compat to dependencies
     {
@@ -80,11 +80,11 @@ return {
               end
           }
         },
-        avante = {
-            module = 'blink-cmp-avante',
-            name = 'Avante',
-            opts = {},
-        }
+        -- avante = {
+        --     module = 'blink-cmp-avante',
+        --     name = 'Avante',
+        --     opts = {},
+        -- }
       },
     },
 

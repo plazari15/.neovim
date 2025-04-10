@@ -12,6 +12,9 @@ return {
           sources = {
             -- add lazydev to your completion providers
             default = { "lazydev" },
+            per_filetype = {
+              codecompanion = { "codecompanion" }
+            },
             providers = {
               lazydev = {
                 name = "LazyDev",
