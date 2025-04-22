@@ -12,11 +12,25 @@ return {
           return require("codecompanion.adapters").extend("githubmodels", {
             schema = {
               model = {
-                default = "Codestral-2501",
+                -- default = "Codestral-2501",
+                default = "gpt-4.1",
               },
             },
           })
         end,
+        coplitot = function()
+            return require("codecompanion.adapters").extend("copilot", {
+                schema = {
+                model = {
+                    -- default = "gpt-4o",
+                    -- default = "claude-3.5-sonnet",
+                    -- default = "claude-3.7-sonnet",
+                    -- default = "gemini-2.5-pro",
+                    -- default = "gemini-2.0-flash",
+                },
+                },
+            })
+            end,
       },
       strategies = {
         chat = {
@@ -55,4 +69,3 @@ return {
     },
   },
 }
-
