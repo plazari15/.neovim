@@ -80,3 +80,6 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { noremap = true, desc = "Go
 vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>ab", ":CodeCompanion #buffer ", { noremap = true, silent = false })
 
+-- Keymaps for buffer alt
+vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Próximo buffer" })
+vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Buffer anterior" })
