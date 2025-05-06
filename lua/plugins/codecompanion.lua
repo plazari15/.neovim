@@ -7,6 +7,16 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     opts = {
+      extensions = {
+        mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+            show_result_in_chat = true, -- Show the mcp tool result in the chat buffer
+            make_vars = true, -- make chat #variables from MCP server resources
+            make_slash_commands = true, -- make /slash_commands from MCP server prompts
+          },
+        },
+      },
       adapters = {
         githubmodels = function()
           return require("codecompanion.adapters").extend("githubmodels", {
@@ -19,22 +29,22 @@ return {
           })
         end,
         coplitot = function()
-            return require("codecompanion.adapters").extend("copilot", {
-                schema = {
-                model = {
-                    -- default = "gpt-4o",
-                    -- default = "claude-3.5-sonnet",
-                    -- default = "claude-3.7-sonnet",
-                    -- default = "gemini-2.5-pro",
-                    -- default = "gemini-2.0-flash",
-                },
-                },
-            })
-            end,
+          return require("codecompanion.adapters").extend("copilot", {
+            schema = {
+              model = {
+                default = "gpt-4o",
+                -- default = "claude-3.5-sonnet",
+                -- default = "claude-3.7-sonnet",
+                -- default = "gemini-2.5-pro",
+                -- default = "gemini-2.0-flash",
+              },
+            },
+          })
+        end,
       },
       strategies = {
         chat = {
-          adapter = "githubmodels",
+          adapter = "copilot", -- "githubmodels",
         },
         inline = {
           adapter = "githubmodels",
