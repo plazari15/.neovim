@@ -1,3 +1,3 @@
 return {
-    { "williamboman/mason-lspconfig.nvim", config = function() end }
+    { "mason-org/mason-lspconfig.nvim", config = function() end }
 }

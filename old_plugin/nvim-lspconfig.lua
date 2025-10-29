@@ -4,7 +4,7 @@ return {
     event = "LazyFile",
     dependencies = {
       "mason.nvim",
-      { "williamboman/mason-lspconfig.nvim", config = function() end },
+      { "mason-org/mason-lspconfig.nvim", config = function() end },
     },
     opts = function()
       ---@class PluginLspOpts
@@ -147,12 +147,12 @@ return {
       LazyVim.format.register(LazyVim.lsp.formatter())
 
       -- setup keymaps
-      LazyVim.lsp.on_attach(function(client, buffer)
+      Snacks.util.lsp.on({}, function(buffer, client)
         require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
       end)
 
-      LazyVim.lsp.setup()
-      LazyVim.lsp.on_dynamic_capability(require("lazyvim.plugins.lsp.keymaps").on_attach)
+      -- LazyVim.lsp.setup()
+      -- LazyVim.lsp.on_dynamic_capability(require("lazyvim.plugins.lsp.keymaps").on_attach)
 
       -- diagnostics signs
       if vim.fn.has("nvim-0.10.0") == 0 then
@@ -168,7 +168,7 @@ return {
       if vim.fn.has("nvim-0.10") == 1 then
         -- inlay hints
         if opts.inlay_hints.enabled then
-          LazyVim.lsp.on_supports_method("textDocument/inlayHint", function(client, buffer)
+          Snacks.util.lsp.on({ method = "textDocument/inlayHint" }, function(buffer, client)
             if
               vim.api.nvim_buf_is_valid(buffer)
               and vim.bo[buffer].buftype == ""
@@ -181,7 +181,7 @@ return {
 
         -- code lens
         if opts.codelens.enabled and vim.lsp.codelens then
-          LazyVim.lsp.on_supports_method("textDocument/codeLens", function(client, buffer)
+          Snacks.util.lsp.on({ method = "textDocument/codeLens" }, function(buffer, client)
             vim.lsp.codelens.refresh()
             vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
               buffer = buffer,
@@ -241,7 +241,7 @@ return {
       local have_mason, mlsp = pcall(require, "mason-lspconfig")
       local all_mslp_servers = {}
       if have_mason then
-        all_mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
+        all_mslp_servers = mlsp.get_available_servers()
       end
 
       local ensure_installed = {} ---@type string[]
@@ -270,17 +270,31 @@ return {
         })
       end
 
-      if LazyVim.lsp.is_enabled("denols") and LazyVim.lsp.is_enabled("vtsls") then
+      -- Handle deno/vtsls conflict
+      if opts.servers.denols and opts.servers.vtsls then
         local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
-        LazyVim.lsp.disable("vtsls", is_deno)
-        LazyVim.lsp.disable("denols", function(root_dir, config)
-          if not is_deno(root_dir) then
-            config.settings.deno.enable = false
+        opts.servers.vtsls.root_dir = function(fname)
+          if is_deno(fname) then
+            return nil
           end
-          return false
-        end)
+          return require("lspconfig.util").root_pattern("package.json")(fname)
+        end
+        opts.servers.denols.root_dir = function(fname)
+          if not is_deno(fname) then
+            return nil
+          end
+          return require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")(fname)
+        end
       end
     end,
   },
 }
 
+
+
+
+dps queria um pouco do seu feedback se to sendo clara nos direcionamentos
+  as vezes fico na duvida se to mais atrapalhando que ajudando
+  kkkk
+  
+  

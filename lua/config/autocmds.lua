@@ -13,6 +13,10 @@ vim.api.nvim_create_user_command("NuRepl", function()
   vim.cmd("Lein with-profile +unit,+integration,+dev repl")
 end, {})
 
+vim.api.nvim_create_user_command("NuReplMX", function()
+  vim.cmd("NU_COUNTRY=mx lein with-profile +unit,+integration,+dev repl")
+end, {})
+
 -- FIM COMANDO QUE ABRE O REPL
 
 -- COMANDO QUE VAI ORGANIZAR OS IMPORTS --
