@@ -7,18 +7,22 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
--- COMANDO QUE ABRE O REPL ESPECIFICO DO NUBANK
+-- COMANDO QUE ABRE O REPL
 
 vim.api.nvim_create_user_command("NuRepl", function()
-    vim.cmd("Lein with-profile +unit,+integration,+dev repl")
-  end, {})
+  vim.cmd("Lein with-profile +unit,+integration,+dev repl")
+end, {})
 
--- FIM COMANDO QUE ABRE O REPL ESPECIFICO DO NUBANK
-  
+vim.api.nvim_create_user_command("NuReplMX", function()
+  vim.cmd("NU_COUNTRY=mx lein with-profile +unit,+integration,+dev repl")
+end, {})
+
+-- FIM COMANDO QUE ABRE O REPL
+
 -- COMANDO QUE VAI ORGANIZAR OS IMPORTS --
 vim.api.nvim_create_user_command("CleanNs", function()
   vim.lsp.buf.code_action({
     context = { only = { "source.organizeImports" } },
-    apply = true
+    apply = true,
   })
 end, {})
